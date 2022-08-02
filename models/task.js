@@ -13,10 +13,7 @@ const posts = mongoose.Schema({
         type:Boolean,
         default:false
     },
-    dateAdded:{
-        type:Date,
-        default:Date.now()
-    }
-})
+   
+},{timestamps:true})
 
 module.exports = mongoose.model("tasks",posts)

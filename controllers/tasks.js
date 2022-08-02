@@ -32,10 +32,9 @@ exports.findAll =  asyncWrapper( async (req,res)=>{
 
         res.status(200).json({
             data: task.sort((a,b)=>{
-                console.log("a",a)
-                console.log("b",b)
+            
                  
-                return new Date(b.dateAdded) - new Date(a.dateAdded) 
+                return new Date(b.createdAt) - new Date(a.createdAt) 
                   })
         })
 
