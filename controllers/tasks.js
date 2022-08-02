@@ -87,7 +87,7 @@ exports.updateTask = asyncWrapper( async (req,res)=>{
             errorMessage:"Task Title required",
             data:[]
         }) 
-    }else if(!req.body.isCompleted){
+    }else if(req.body.isCompleted == null){
         res.status(400).json({
             errorMessage:"Completetion Status required",
             data:[]
