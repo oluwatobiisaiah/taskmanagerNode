@@ -34,7 +34,7 @@ exports.findAll =  asyncWrapper( async (req,res)=>{
             data: task.sort((a,b)=>{
             
                  
-                return new Date(b.createdAt) - new Date(a.createdAt) 
+                return new Date(b.updatedAt) - new Date(a.updatedAt) 
                   })
         })
 
