@@ -26,9 +26,17 @@ exports.createTask = asyncWrapper( async (req,res)=>{
 )
 
 exports.findAll =  asyncWrapper( async (req,res)=>{
-        const task =   await  taskModel.find().sort({dateAdded: 'descending'})
+        const task =   await  taskModel.find()
+        
+        
+
         res.status(200).json({
-            data: task
+            data: task.sort((a,b)=>{
+                console.log("a",a)
+                console.log("b",b)
+                 
+                return new Date(b.dateAdded) - new Date(a.dateAdded) 
+                  })
         })
 
     
