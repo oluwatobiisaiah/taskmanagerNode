@@ -77,12 +77,28 @@ exports.deleleTask = asyncWrapper( async (req,res)=>{
 })
 
 exports.updateTask = asyncWrapper( async (req,res)=>{
-    if(!req.body.taskContent || !req.body.taskTitle || !req.body.isCompleted){
+    if(!req.body.taskContent){
         res.status(400).json({
-            errorMessage:"bad request",
+            errorMessage:"Task Content Required",
             data:[]
         }) 
-    }else{
+    }else if(!req.body.taskTitle){
+        res.status(400).json({
+            errorMessage:"Task Title required",
+            data:[]
+        }) 
+    }else if(!req.body.isCompleted){
+        res.status(400).json({
+            errorMessage:"Completetion Status required",
+            data:[]
+        }) 
+    }else if(!req.body.id){
+        res.status(400).json({
+            errorMessage:"Task id required",
+            data:[]
+        }) 
+    }
+    else{
             const task = await taskModel.findOneAndUpdate({_id:req.body.id},{taskTitle:req.body.taskTitle,taskContent:req.body.taskContent,isCompleted:req.body.isCompleted},{new:true})
             res.status(201).json({
                 data: task
